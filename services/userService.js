@@ -1,4 +1,5 @@
 import {userRepository} from "../repositories/userRepository.js";
+import {fighterRepository} from "../repositories/fighterRepository.js";
 
 class UserService {
     // TODO: Implement methods to work with user
@@ -43,6 +44,10 @@ class UserService {
     }
 
     deleteUser(id) {
+        const user = userRepository.getOne({id})
+        if (!user) {
+            throw Error(`User with ${id} does not exist`)
+        }
         return userRepository.delete(id)
     }
 }

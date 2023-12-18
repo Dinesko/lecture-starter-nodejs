@@ -75,12 +75,7 @@ router.put("/:id",
 router.delete("/:id",
     (req, res, next) => {
         const {id} = req.params
-
         try {
-            const fighter = fighterService.getFighter({id})
-            if (id !== fighter?.id) {
-                throw Error(`Fighter with id:${id} does not exist`)
-            }
             res.data = fighterService.deleteFighter(id)
         } catch (err) {
             res.err = err;

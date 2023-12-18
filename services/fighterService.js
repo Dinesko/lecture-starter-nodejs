@@ -1,4 +1,5 @@
 import {fighterRepository} from "../repositories/fighterRepository.js";
+import {userRepository} from "../repositories/userRepository.js";
 
 class FighterService {
     // TODO: Implement methods to work with fighters
@@ -31,6 +32,10 @@ class FighterService {
     }
 
     deleteFighter(id) {
+        const fighter = fighterRepository.getOne({id})
+        if (!fighter) {
+            throw Error(`Fighter with id:${id} does not exist`)
+        }
         return fighterRepository.delete(id)
     }
 }

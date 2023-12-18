@@ -72,12 +72,7 @@ router.put("/:id",
 router.delete("/:id",
     (req, res, next) => {
         const {id} = req.params
-
         try {
-            const user = userService.search({id})
-            if (!user) {
-                throw Error(`${id} does not exist`)
-            }
             res.data = userService.deleteUser(id)
         } catch (err) {
             res.err = err;
